@@ -9,8 +9,8 @@ resource "aws_lb" "main" {
 
 resource "aws_lb_listener" "main" {
   load_balancer_arn = aws_lb.main.arn
-  port              = "80"
-  protocol          = "HTTP"
+  port              = var.internal ? 80 : 443
+  protocol          = var.internal ? "HTTP" : "HTTPS"
   ssl_policy        = null
   certificate_arn   = null
 
